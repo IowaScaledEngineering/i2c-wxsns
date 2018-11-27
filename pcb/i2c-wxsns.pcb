@@ -933,6 +933,10 @@ Layer(1 "top")
 	(
 		[860.00mil 120.00mil] [780.00mil 120.00mil] [780.00mil 20.00mil] [860.00mil 20.00mil] 
 	)
+	Polygon("clearpoly")
+	(
+		[0.0000 250.00mil] [125.00mil 250.00mil] [125.00mil 0.0000] [0.0000 0.0000] 
+	)
 )
 Layer(2 "bottom")
 (

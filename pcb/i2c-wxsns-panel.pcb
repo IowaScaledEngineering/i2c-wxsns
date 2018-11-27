@@ -1232,6 +1232,18 @@ Layer(1 "top")
 	(
 		[300.00mil 840.00mil] [390.00mil 840.00mil] [390.00mil 940.00mil] [300.00mil 940.00mil] 
 	)
+	Polygon("clearpoly")
+	(
+		[10.00mil 10.00mil] [135.00mil 10.00mil] [135.00mil 260.00mil] [10.00mil 260.00mil] 
+	)
+	Polygon("clearpoly")
+	(
+		[10.00mil 360.00mil] [135.00mil 360.00mil] [135.00mil 610.00mil] [10.00mil 610.00mil] 
+	)
+	Polygon("clearpoly")
+	(
+		[10.00mil 710.00mil] [135.00mil 710.00mil] [135.00mil 960.00mil] [10.00mil 960.00mil] 
+	)
 )
 Layer(2 "bottom")
 (
