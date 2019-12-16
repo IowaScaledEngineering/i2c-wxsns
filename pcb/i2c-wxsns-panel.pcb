@@ -1020,6 +1020,15 @@ Element["" "TMP117" "U1" "unknown" 705.00mil 835.00mil -60.00mil 65.00mil 0 77 "
 	ElementArc [64.21mil -74.06mil 5.00mil 5.00mil 270 360 10.00mil]
 
 	)
+
+Element["onsolder" "Standard SMT resistor, capacitor etc" "" "0805" 450.00mil 1130.00mil -31.50mil 31.50mil 0 100 "auto"]
+(
+	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 57.18mil "1" "1" "onsolder,square"]
+	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 57.18mil "2" "2" "onsolder,square"]
+	ElementLine [-3.93mil 27.55mil 3.93mil 27.55mil 10.00mil]
+	ElementLine [-3.93mil -27.55mil 3.93mil -27.55mil 10.00mil]
+
+	)
 Layer(1 "top")
 (
 	Line[265.00mil 1.9290mm 335.00mil 1.9290mm 20.00mil 20.00mil ""]
