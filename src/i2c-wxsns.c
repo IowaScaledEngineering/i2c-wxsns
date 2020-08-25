@@ -646,18 +646,27 @@ int main(void)
 
 					mrbusTxBuffer[MRBUS_PKT_SRC] = mrbus_dev_addr;
 					mrbusTxBuffer[MRBUS_PKT_DEST] = 0xFF;
-					mrbusTxBuffer[MRBUS_PKT_LEN] = 14;
+					mrbusTxBuffer[MRBUS_PKT_LEN] = 15;
 					mrbusTxBuffer[5] = 'S';
+
+					// TMP117 temperature
 					mrbusTxBuffer[6] = (uint8_t)(intFloat >> 24);
 					mrbusTxBuffer[7] = (uint8_t)(intFloat >> 16);
 					mrbusTxBuffer[8] = (uint8_t)(intFloat >> 8);
 					mrbusTxBuffer[9] = (uint8_t)(intFloat);
 
-					mrbusTxBuffer[10] = (uint8_t)humidity;
+					// SHT35 humidity
+					k = F32toF16(humidity);
+					mrbusTxBuffer[10] = (uint8_t)(k>>8);
+					mrbusTxBuffer[11] = (uint8_t)k;
+
+					// SHT35 temperature
 					k = F32toF16(temperature);
-					mrbusTxBuffer[11] = (uint8_t)(k>>8);
-					mrbusTxBuffer[12] = (uint8_t)k;
-					mrbusTxBuffer[13] = busVoltage / 248;  // 1023 = 3.3V, therefore 1023 * 8 / 33 = 248
+					mrbusTxBuffer[12] = (uint8_t)(k>>8);
+					mrbusTxBuffer[13] = (uint8_t)k;
+
+					// Battery voltage
+					mrbusTxBuffer[14] = busVoltage / 248;  // 1023 = 3.3V, therefore 1023 * 8 / 33 = 248
 					mrbusPktQueuePush(&mrbeeTxQueue, mrbusTxBuffer, mrbusTxBuffer[MRBUS_PKT_LEN]);
 				}
 				thState = WXSNS_STATE_SEND_PACKET;
