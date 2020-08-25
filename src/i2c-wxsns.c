@@ -253,12 +253,13 @@ volatile uint8_t tmp117_read_countdown=0;
 
 void tmp117_start_conversion()
 {
-	uint8_t msgBuf[3];
+	uint8_t msgBuf[4];
 	memset(msgBuf, 0, sizeof(msgBuf));    
 	msgBuf[0] = TMP117_I2C_ADDR;
-	msgBuf[1] = 0x0E;  // One-shot, 1s cycle, 8 averages
-	msgBuf[2] = 0x20;
-	i2c_transmit(msgBuf, 3, 1);
+	msgBuf[1] = 0x01;
+	msgBuf[2] = 0x0E;  // One-shot, 1s cycle, 8 averages
+	msgBuf[3] = 0x20;
+	i2c_transmit(msgBuf, 4, 1);
 	while(i2c_busy());
 	tmp117_read_countdown = 2; // In 100mS increments, 8 * 15.5ms = 124ms
 }
@@ -274,7 +275,7 @@ uint8_t tmp117_read_value(float* tempCelsius)
 	msgBuf[1] = 0x00; // Temperature pointer
 	i2c_transmit(msgBuf, 2, 0);
 	msgBuf[0] = TMP117_I2C_ADDR | 0x01;  // Read address
-	i2c_transmit(msgBuf, 3, 0);
+	i2c_transmit(msgBuf, 3, 1);
 	i2c_receive(msgBuf, 3);
 
 	tmpVal = ((uint16_t)msgBuf[1] << 8) + msgBuf[2];
@@ -339,7 +340,7 @@ uint8_t sht3x_read_value(float* tempCelsius, float* relativeHumidity)
 	memset(msgBuf, 0, sizeof(msgBuf));
 
 	msgBuf[0] = SHT3X_I2C_ADDR | 0x01;  // Read address
-	i2c_transmit(msgBuf, 7, 0);
+	i2c_transmit(msgBuf, 7, 1);
 	i2c_receive(msgBuf, 7);
 
 	tmpVal = ((((uint16_t)msgBuf[1]))<<8) | ((uint16_t)msgBuf[2]);
@@ -622,6 +623,7 @@ int main(void)
 
 			case WXSNS_STATE_TRIGGER:
 				startADCConversion();
+				tmp117_start_conversion();
 				sht3x_start_conversion();
 				thState = WXSNS_STATE_WAIT;
 				break;
