@@ -294,7 +294,7 @@ volatile uint8_t sht3x_read_countdown=0;
 
 uint8_t sht3x_crc_calculate(uint16_t sensorVal)
 {
-	uint8_t crc = 0;
+	uint8_t crc = 0xFF;
 	uint8_t bit;
 
 	crc ^= (sensorVal >> 8);
@@ -344,7 +344,7 @@ uint8_t sht3x_read_value(float* tempCelsius, float* relativeHumidity)
 	i2c_receive(msgBuf, 7);
 
 	tmpVal = ((((uint16_t)msgBuf[1]))<<8) | ((uint16_t)msgBuf[2]);
-	if (1 || msgBuf[3] == sht3x_crc_calculate(tmpVal))
+	if (msgBuf[3] == sht3x_crc_calculate(tmpVal))
 	{
 		// Checksum works out
 		// Tc = -45 + 175 * (Sensor / 65535)
@@ -355,7 +355,7 @@ uint8_t sht3x_read_value(float* tempCelsius, float* relativeHumidity)
 	}
 
 	tmpVal = ((((uint16_t)msgBuf[4]))<<8) | ((uint16_t)msgBuf[5]);
-	if (1 || msgBuf[6] == sht3x_crc_calculate(tmpVal))
+	if (msgBuf[6] == sht3x_crc_calculate(tmpVal))
 	{
 		// Checksum works out
 		// RH = 100 * (Sensor / 65535)
