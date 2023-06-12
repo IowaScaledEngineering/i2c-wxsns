@@ -1,0 +1,34 @@
+{
+    "layout": {
+        "type": "grid",
+        "rows": 3,
+        "cols": 1,
+        "space": "100mil",
+    },
+    "tabs": {
+        "type": "fixed",
+        "width": "100mil",
+        "vcount": "0",
+    },
+    "framing": {
+        "type": "frame",
+        "space": "100mil",
+        "width": "200mil",
+    },
+    "fiducials": {
+        "type": "3fid",
+        "space": "100mil",
+        "hoffset": "300mil",
+        "voffset": "100mil",
+        "coppersize": "1mm",
+        "opening": "2mm",
+    },
+    "post": {
+        "millradius": "50mil",
+    },
+    "copperfill": {
+        "type": "solid",
+        "clearance": "100mil",
+        "layers": "F.Cu",
+    },
+}
