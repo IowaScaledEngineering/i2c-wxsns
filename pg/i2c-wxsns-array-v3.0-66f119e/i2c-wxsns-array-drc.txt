@@ -1,0 +1,10 @@
+** Drc report for /home/data/design/projects/i2c-wxsns/kicad/i2c-wxsns/i2c-wxsns-array.kicad_pcb **
+** Created on 2023-06-21 21:45:56 **
+
+** Found 0 DRC violations **
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **
